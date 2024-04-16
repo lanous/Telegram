@@ -11,6 +11,6 @@ class Request extends Config {
         curl_setopt($Request,CURLOPT_POSTFIELDS, $fields);
         $result = curl_exec($Request);
         curl_close($Request);
-        return $result;
+        return json_decode($result,1);
     }
 }

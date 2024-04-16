@@ -9,7 +9,9 @@ class Reply {
         $this->config['is_persistent'] = $is_persistent;
         $this->config['resize_keyboard'] = $resize_keyboard;
         $this->config['one_time_keyboard'] = $one_time_keyboard;
-        $this->config['input_field_placeholder'] = $input_field_placeholder;
+        if (isset($input_field_placeholder)) {
+            $this->config['input_field_placeholder'] = $input_field_placeholder;
+        }
         $this->config['selective'] = $selective;
         foreach ($buttons ?? [] as $key=>$value) {
             if(is_array($value)) {
