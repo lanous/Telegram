@@ -9,10 +9,10 @@ include_once("src/Language/Load.php");
 
 Lanous\Telegram\Config::setConfig("Telegram","BOT_TOKEN","6346204639:AAEUcb2qtWs5NBq6SUxGeFGt80jz48I6nPo");
 $Request = new Lanous\Telegram\Request();
-$GetUpdate = new Lanous\Telegram\Updates\GetUpdate();
-$Language = new Lanous\Telegram\Language\Load();
 
+$Language = new Lanous\Telegram\Language\Load();
 $Language->LoadDirectory("FA",__DIR__."/Languages/Fa");
+
 $Language->SetLanguage("FA");
 
 
