@@ -2,8 +2,7 @@
 
 return [
     "start" => [
-        "text" => "سلام :first_name: شناسه ی کاربری شما :chat_id: ",
-        "text2" => ":first_name: نام شما ",
-        "text3" => ":chat_id: چت ایدی شما "
+        "normal" => "سلام :first_name: شناسه ی کاربری شما :chat_id: ",
+        "invite" => "شما توسط :first_name_inviter: دعوت شدید!",
     ],
 ];
