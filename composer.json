@@ -1,0 +1,20 @@
+{
+    "name": "lanous/telegram",
+    "type": "library",
+    "keywords": ["telegram", "telegram-bot", "telegram"],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lanous\\Telegram\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Azad",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.3.0"
+    }
+}

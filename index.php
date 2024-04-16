@@ -1,108 +1,25 @@
 <?php
-
+include_once("src/Exceptions/Structure.php");
+include_once("src/Config.php");
 include_once("src/Keyboard/Reply.php");
+include_once("src/Updates/GetUpdate.php");
+include_once("src/Request.php");
+include_once("src/Language/Load.php");
 
-$Reply = new Lanous\Telegram\Keyboard\Reply(
-    [
-        ["one","two","three"],
-        ["four","five","six"],
-        ["seven","eight","nine"],
-    ],
-    resize_keyboard: true,
-    one_time_keyboard: false
+
+Lanous\Telegram\Config::setConfig("Telegram","BOT_TOKEN","6346204639:AAEUcb2qtWs5NBq6SUxGeFGt80jz48I6nPo");
+$Request = new Lanous\Telegram\Request();
+$GetUpdate = new Lanous\Telegram\Updates\GetUpdate();
+$Language = new Lanous\Telegram\Language\Load();
+
+$Language->LoadDirectory("FA",__DIR__."/Languages/Fa");
+$Language->SetLanguage("FA");
+
+
+$textMessage = $Language->Extract("start")['text'];
+$Language->Bind($textMessage,":chat_id:",5777768106);
+$Language->Bind($textMessage,":first_name:","محمد");
+$Request->Method("SendMessage",
+    chat_id:5777768106,
+    text:$textMessage
 );
-
-
-$Reply->AddRow(["ten","eleven","twelve"]); # Add New Row in Bottom
-/*
-    ["one","two","three"],
-    ["four","five","six"],
-    ["seven","eight","nine"],
-    ["ten","eleven","twelve"]
-*/
-
-$Reply->AddRow(["1","Share Number","3"],"top"); # Add New Row in Top - thats not a clean code!
-/*
-    ["1","Share Number","3"]
-    ["one","two","three"],
-    ["four","five","six"],
-    ["seven","eight","nine"],
-    ["ten","eleven","twelve"]
-*/
-
-$Reply->AddField(row_number:1,  button_number:2, # Select Button
-    field: ["request_contact"=>true] # Add Field
-);
-
-$Reply->DelRow(2);
-/*
-    ["1","Share Number","3"]
-    ["four","five","six"],
-    ["seven","eight","nine"],
-    ["ten","eleven","twelve"]
-*/
-
-$Reply->DelButton(1,3);
-/*
-    ["1","Share Number"]
-    ["four","five","six"],
-    ["seven","eight","nine"],
-    ["ten","eleven","twelve"]
-*/
-
-print $Reply->ToJson();
-/*
-
-{
-    "is_persistent": false,
-    "resize_keyboard": true,
-    "one_time_keyboard": true,
-    "input_field_placeholder": null,
-    "selective": false,
-    "keyboard": [
-        [
-            {
-                "text": "1"
-            },
-            {
-                "text": "Share Number",
-                "request_contact": true
-            }
-        ],
-        [
-            {
-                "text": "four"
-            },
-            {
-                "text": "five"
-            },
-            {
-                "text": "six"
-            }
-        ],
-        [
-            {
-                "text": "seven"
-            },
-            {
-                "text": "eight"
-            },
-            {
-                "text": "nine"
-            }
-        ],
-        [
-            {
-                "text": "ten"
-            },
-            {
-                "text": "eleven"
-            },
-            {
-                "text": "twelve"
-            }
-        ]
-    ]
-}
-
-*/
