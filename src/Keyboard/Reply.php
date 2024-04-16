@@ -28,16 +28,10 @@ class Reply {
      */
     public function AddRow(array $buttons,string $position="bottom") : int {
         if ($position == "top") {
-
-            $new_buttons = null;
-            $backup_buttons = $this->buttons;
-
             array_walk($buttons,function (&$value,$key) {
                 $value = ["text"=>$value];
             });
-            $new_buttons = $buttons;
-            $this->buttons = array_merge([$new_buttons],$backup_buttons);
-
+            $this->buttons = array_merge([$buttons],$this->buttons);
         } elseif ($position == "bottom") {
             array_walk($buttons,function (&$value,$key) {
                 $value = ["text"=>$value];
@@ -45,6 +39,9 @@ class Reply {
             $this->buttons[] = $buttons;
         }
         return count($this->buttons);
+    }
+    public function AddManual ($keyboards) {
+        $this->buttons = array_merge($keyboards,$this->buttons);
     }
     public function AddField (int $row_number=null,int $button_number,array $field) {
         $field_type = array_key_first($field);

@@ -50,16 +50,41 @@ $Reply->DelButton(1,3);
     ["ten","eleven","twelve"]
 */
 
+$Reply->AddManual([
+    [
+        ["text"=>"ok"],
+    ],
+    [
+        ["text"=>"im good"]
+    ]
+]);
+/*
+    ["ok"],
+    ["im good"],
+    ["1","Share Number"],
+    ["four","five","six"],
+    ["seven","eight","nine"],
+    ["ten","eleven","twelve"]
+*/
 print $Reply->ToJson();
 /*
 
-{
     "is_persistent": false,
     "resize_keyboard": true,
-    "one_time_keyboard": true,
+    "one_time_keyboard": false,
     "input_field_placeholder": null,
     "selective": false,
     "keyboard": [
+        [
+            {
+                "text": "ok"
+            }
+        ],
+        [
+            {
+                "text": "im good"
+            }
+        ],
         [
             {
                 "text": "1"
