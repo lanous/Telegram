@@ -2,11 +2,15 @@
 
 include_once("src/Keyboard/Reply.php");
 
-$Reply = new Lanous\Telegram\Keyboard\Reply([
-    ["one","two","three"],
-    ["four","five","six"],
-    ["seven","eight","nine"],
-]);
+$Reply = new Lanous\Telegram\Keyboard\Reply(
+    [
+        ["one","two","three"],
+        ["four","five","six"],
+        ["seven","eight","nine"],
+    ],
+    resize_keyboard: true,
+    one_time_keyboard: false
+);
 
 
 $Reply->AddRow(["ten","eleven","twelve"]); # Add New Row in Bottom
@@ -46,7 +50,7 @@ $Reply->DelButton(1,3);
     ["ten","eleven","twelve"]
 */
 
-$Reply->ToJson();
+print $Reply->ToJson();
 /*
 
 {
