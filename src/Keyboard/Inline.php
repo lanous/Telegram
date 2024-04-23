@@ -12,7 +12,9 @@ class Inline {
         return $field;
     }
     public function AddRow (...$buttons) {
-        $this->buttons[] = $buttons;
+        if (!empty($buttons)) {
+            $this->buttons[] = array_values(array_filter($buttons,fn($data) => $data !== null));
+        }
     }
     public function toJson() {
         return json_encode(["inline_keyboard"=>$this->buttons],128|256);

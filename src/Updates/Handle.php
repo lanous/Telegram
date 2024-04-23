@@ -9,6 +9,7 @@ class Handle {
     public $text;
     public $cb_data;
     public $cb_chat_id;
+    public $cb_message_id;
     public $invite_id=false;
     public function __construct($Update) {
         $this->chat_id = $Update["message"]['chat']['id'] ?? null;
@@ -17,6 +18,7 @@ class Handle {
         $this->text = $Update["message"]['text'] ?? null;
         $this->cb_data = $Update["callback_query"]["data"] ?? null;
         $this->cb_chat_id = $Update["callback_query"]["from"]["id"] ?? null;
+        $this->cb_message_id = $Update["callback_query"]["message"]["message_id"] ?? null;
 
         if(explode(" ",$this->text)[0] == "/start" and isset(explode(" ",$this->text)[1])) {
             $this->invite_id = explode(" ",$this->text)[1];
