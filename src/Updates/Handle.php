@@ -1,7 +1,6 @@
 <?php
 
 namespace Lanous\Telegram\Updates;
-
 class Handle {
     public $chat_id;
     public $first_name;
@@ -11,6 +10,9 @@ class Handle {
     public $cb_chat_id;
     public $cb_message_id;
     public $invite_id=false;
+    public $forward_from;
+    public $contact;
+
     public function __construct($Update) {
         $this->chat_id = $Update["message"]['chat']['id'] ?? null;
         $this->first_name = $Update["message"]['chat']['first_name'] ?? null;
@@ -19,6 +21,8 @@ class Handle {
         $this->cb_data = $Update["callback_query"]["data"] ?? null;
         $this->cb_chat_id = $Update["callback_query"]["from"]["id"] ?? null;
         $this->cb_message_id = $Update["callback_query"]["message"]["message_id"] ?? null;
+        $this->forward_from = $Update["message"]["forward_from"] ?? null;
+        $this->contact = $Update["message"]["contact"] ?? null;
 
         if(explode(" ",$this->text)[0] == "/start" and isset(explode(" ",$this->text)[1])) {
             $this->invite_id = explode(" ",$this->text)[1];

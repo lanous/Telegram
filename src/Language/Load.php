@@ -38,6 +38,9 @@ class Load {
             if($search !== false) {
                 $result[$key] = $search;
             }
+            if (!isset($result[$key])) {
+                $result[$key] = false;
+            }
         }
         return $result;
     }

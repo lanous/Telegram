@@ -3,7 +3,7 @@
 namespace Lanous\Telegram\Keyboard;
 
 class Reply {
-    private array $buttons;
+    private array $buttons=[];
     private $config=[];
     public function __construct($buttons=null,$is_persistent=false,$resize_keyboard=true,$one_time_keyboard=true,$input_field_placeholder=null,$selective=false) {
         $this->config['is_persistent'] = $is_persistent;
@@ -23,7 +23,9 @@ class Reply {
                 $buttons[$key] = ["text"=>$value];
             }
         }
-        $this->buttons = $buttons;
+        if ($buttons != null) {
+            $this->buttons = $buttons;
+        }
     }
     /**
      * @param string $from top|bottom

@@ -2,6 +2,7 @@
 
 namespace Lanous\Telegram\Updates;
 use \Lanous\Telegram\Request;
+
 class GetUpdate {
     private $last_update_id;
     public function Run (callable $callback,$sleep=0) {
