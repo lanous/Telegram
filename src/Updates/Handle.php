@@ -15,13 +15,13 @@ class Handle {
     public $message_id;
 
     public function __construct($Update) {
-        $this->chat_id = $Update["message"]['chat']['id'] ?? null;
+        $this->chat_id = $Update["message"]['chat']['id'] ?? 0;
         $this->first_name = $Update["message"]['chat']['first_name'] ?? null;
         $this->last_name = $Update["message"]['chat']['last_name'] ?? null;
-        $this->text = $Update["message"]['text'] ?? null;
+        $this->text = $Update["message"]['text'] ?? "";
         $this->message_id = $Update["message"]['message_id'] ?? null;
-        $this->cb_data = $Update["callback_query"]["data"] ?? null;
-        $this->cb_chat_id = $Update["callback_query"]["from"]["id"] ?? null;
+        $this->cb_data = $Update["callback_query"]["data"] ?? "";
+        $this->cb_chat_id = $Update["callback_query"]["from"]["id"] ?? 0;
         $this->cb_message_id = $Update["callback_query"]["message"]["message_id"] ?? null;
         $this->forward_from = $Update["message"]["forward_from"] ?? null;
         $this->contact = $Update["message"]["contact"] ?? null;

@@ -24,6 +24,12 @@ class Request extends Config {
             die(curl_error($Request));
         }
         curl_close($Request);
-        return json_decode($result,1);
+        $data = json_decode($result,1);
+        if($data['ok'] != true) {
+            if (!preg_match("/message is not modified/",$data['description'])) {
+                throw new Exceptions\Request("Error in request: ".json_encode($data,128|256)."Method: ".$method_name." - Parameters: ".json_encode($fields,128|256));
+            }
+        }
+        return $data;
     }
 }

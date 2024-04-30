@@ -4,7 +4,7 @@ namespace Lanous\Telegram;
 
 class AutoLoad {
     public function Directory (string $directory_name,array $variables=array()) {
-        $directores = glob($directory_name."\*");
+        $directores = glob($directory_name."/*");
         foreach ($directores as $DIR_FILE) {
             if (is_dir($DIR_FILE)) {
                 $this->Directory ($DIR_FILE,$variables);
