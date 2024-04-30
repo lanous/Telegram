@@ -31,4 +31,22 @@ class Handle {
             $this->text = explode(" ",$this->text)[0];
         }
     }
+    public static function GenerateUpdate (...$param) {
+        echo "Lets Check: ".PHP_EOL;
+        var_dump(GetUpdate::$update_cb);
+        var_dump(Webhook::$webhook_url);
+        if (isset(GetUpdate::$update_cb)) {
+            echo "Update sended";
+            GetUpdate::sendUpdate ($param);
+        } else {
+            if(isset(Webhook::$webhook_url)) {
+                $curl = curl_init(Webhook::$webhook_url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $param);
+                $response = curl_exec($curl);
+                curl_close($curl);
+                return $response;
+            }
+        }
+    }
 }
